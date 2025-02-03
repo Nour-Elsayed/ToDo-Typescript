@@ -2,11 +2,11 @@ import ListItem from "./ListItem";
 
 interface List {
   list: ListItem[];
-  addItem(itemObj: ListItem): void;
   save(): void;
-  load(): void;
-  removeItem(id: string): void;
   clearList(): void;
+  addItem(itemObj: ListItem): void;
+  removeItem(id: string): void;
+  load(): void;
 }
 
 export default class FullList implements List {
@@ -47,7 +47,7 @@ export default class FullList implements List {
       JSON.parse(storedList);
 
     parsedList.forEach((itemObj) => {
-      // he we add every new list item and we pass in everything that the list items list receives
+      // we add every new list item and we pass in everything that the list items list receives
       const newListItem = new ListItem(
         itemObj._id,
         itemObj._item,

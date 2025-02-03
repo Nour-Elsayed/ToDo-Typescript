@@ -9,7 +9,7 @@ export interface Item {
 // list item class (array object) to be exported to the full list file
 
 export default class ListItem implements Item {
-  // as the items will be called from outside the class, we need getters and setters
+  // as the items will be called from outside the class and is private, we need getters and setters
 
   public get item(): string {
     return this._item;
