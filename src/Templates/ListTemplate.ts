@@ -9,6 +9,9 @@ interface DOMLIST {
 export default class ListTemplates implements DOMLIST {
   // we added the ul here to let the typescript pass it and not show error
   ul: HTMLUListElement;
+  // this the singleton instance for the constructor
+  static instance: ListTemplates = new ListTemplates();
+  // this is a singleton so we make constructor private and have one instance
   private constructor() {
     this.ul = document.getElementById("listItems") as HTMLUListElement;
   }
@@ -28,6 +31,7 @@ export default class ListTemplates implements DOMLIST {
       // create li
       const li = document.createElement("li") as HTMLLIElement;
       li.className = "item";
+      this.ul.append(li);
       // create input
       const input = document.createElement("input") as HTMLInputElement;
       input.type = "checkbox";
@@ -37,7 +41,7 @@ export default class ListTemplates implements DOMLIST {
       //   li.innerHTML = `<input type="checkbox" id=${Item.id}>
       //                 <label for="1">eat</label>
       //                 <button class="button">X</button>`;
-      this.ul.append(li);
+
       input.addEventListener("change", () => {
         Item.checked = !Item.checked;
         fullList.save();
@@ -57,7 +61,7 @@ export default class ListTemplates implements DOMLIST {
 
       btn.addEventListener("click", () => {
         fullList.removeItem(Item.id);
-        fullList.save();
+        this.render(fullList);
       });
     });
   }
