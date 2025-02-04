@@ -37,3 +37,4 @@ const initApp = (): void => {
 };
 
 document.addEventListener("DOMContentLoaded", initApp);
+//finished
